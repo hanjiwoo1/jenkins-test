@@ -47,7 +47,7 @@ pipeline {
                         'sudo mkdir -p ${DEPLOY_PATH} && sudo chown -R ${DEPLOY_USER}:${DEPLOY_USER} ${DEPLOY_PATH}'
                     
                     # 빌드 파일 배포
-                    scp -r build/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                    scp -r dist/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
                     
                     echo "배포 완료: ${DEPLOY_PATH}"
                 """
