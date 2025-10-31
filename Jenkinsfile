@@ -1,8 +1,6 @@
 pipeline {
     agent any
     
-    // tools 부분 완전히 삭제!
-    
     environment {
         DEPLOY_SERVER = '172.16.100.110'
         DEPLOY_USER = 'conse'
@@ -43,14 +41,16 @@ pipeline {
         stage('Deploy to Server') {
             steps {
                 echo "🚀 ${DEPLOY_SERVER}:${DEPLOY_PATH}로 배포"
-                sshagent(credentials: ['deploy-ssh']) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} \
-                            'sudo mkdir -p ${DEPLOY_PATH} && sudo chown -R ${DEPLOY_USER}:${DEPLOY_USER} ${DEPLOY_PATH}'
-                        
-                        scp -r build/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                    """
-                }
+                sh """
+                    # 배포 디렉토리 생성
+                    ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} \
+                        'sudo mkdir -p ${DEPLOY_PATH} && sudo chown -R ${DEPLOY_USER}:${DEPLOY_USER} ${DEPLOY_PATH}'
+                    
+                    # 빌드 파일 배포
+                    scp -r build/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
+                    
+                    echo "배포 완료: ${DEPLOY_PATH}"
+                """
             }
         }
     }
