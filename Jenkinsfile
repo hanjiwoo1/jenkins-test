@@ -4,7 +4,7 @@ pipeline {
     environment {
         DEPLOY_SERVER = '172.16.100.110'
         DEPLOY_USER = 'conse'
-        DEPLOY_PATH = '/app/frontend'
+        DEPLOY_PATH = '/app/frontend/dist'
     }
     
     stages {
