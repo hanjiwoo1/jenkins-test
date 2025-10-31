@@ -21,7 +21,7 @@ function App() {
           <div className="status-badge">✓ 배포 성공</div>
           <h1>🚀 Jenkins CI/CD 테스트 페이지</h1>
           <p className="description">
-            이 페이지는 Jenkins 파이프라인을 통해 자동 배포되었습니다.
+            이 페이지는 Jenkins 파이프라인을 통해 자동 배포되었습니다 테스트중.
           </p>
         </div>
         
