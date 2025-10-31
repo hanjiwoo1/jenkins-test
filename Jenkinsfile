@@ -1,9 +1,7 @@
 pipeline {
     agent any
     
-    tools {
-        nodejs 'NodeJS 20.0.0'  // 위에서 설정한 이름
-    }
+    // tools 부분 완전히 삭제!
     
     environment {
         DEPLOY_SERVER = '172.16.100.110'
@@ -50,10 +48,7 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_SERVER} \
                             'sudo mkdir -p ${DEPLOY_PATH} && sudo chown -R ${DEPLOY_USER}:${DEPLOY_USER} ${DEPLOY_PATH}'
                         
-                        # build 폴더 또는 dist 폴더 배포 (프로젝트에 따라 다름)
                         scp -r build/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
-                        # 또는
-                        # scp -r dist/* ${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}/
                     """
                 }
             }
