@@ -21,7 +21,7 @@ git init
 
 ### 2. 원격 저장소 연결
 
-GitHub 저장소를za원격 저장소로 추가합니다.
+GitHub 저장소를 원격 저장소로 추가합니다.
 
 ```bash
 git remote add origin https://github.com/hanjiwoo1/jenkins-test.git
